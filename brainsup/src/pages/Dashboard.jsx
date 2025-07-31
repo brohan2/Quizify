@@ -9,7 +9,7 @@ const Dashboard = ({ email }) => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30); 
+  const [timeLeft, setTimeLeft] = useState(30*60); 
   const [answers, setAnswers] = useState({});
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
