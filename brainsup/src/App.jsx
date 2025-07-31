@@ -5,6 +5,7 @@ import './App.css'
 import LandingPage from './pages/LandingPage'
 import Dashboard from './pages/Dashboard'
 import ProtectedRoutes from './utils/ProtectedRoutes'
+import Result from './pages/Result'
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 
@@ -22,6 +23,7 @@ function App() {
               <Dashboard email={email} />
             </ProtectedRoutes>
             }/>
+            <Route path="/result" element={<Result />} />
         </Routes>
     </Router>
     </>
