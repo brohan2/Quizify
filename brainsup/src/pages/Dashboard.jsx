@@ -82,7 +82,14 @@ const Dashboard = ({ email }) => {
     navigate("/result", { replace: true });
   };
 
-  if (isLoading) return <p className="loading">Loading...</p>;
+if (isLoading) {
+  return (
+    <div className="loading-container">
+      <div className="spinner" />
+      <p>Loading, please wait...</p>
+    </div>
+  );
+}
 
   const currentQuestion = questions[currentIndex];
   const selectedAnswer = answers[currentIndex];
