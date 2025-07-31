@@ -41,16 +41,17 @@ const status = getStatusMessage();
       const selected = answers[index];
       const correct = questions[index]?.correct_answer;
       const isCorrect = selected === correct;
-
+      
       return (
         <button
-          key={index}
-          className={`question-number ${
-            currentIndex === index ? "active" : ""
-          } ${selected ? (isCorrect ? "answered-correct" : "answered-wrong") : ""}`}
-          onClick={() => setCurrentIndex(index)}
+        key={index}
+        className={`question-number ${
+          currentIndex === index ? "active" : ""
+        } ${selected ? (isCorrect ? "answered-correct" : "answered-wrong") : ""}`}
+        onClick={() => setCurrentIndex(index)}
         >
           {index + 1}
+    
         </button>
       );
     })}
