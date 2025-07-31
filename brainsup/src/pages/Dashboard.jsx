@@ -9,28 +9,29 @@ const Dashboard = ({ email }) => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(30 * 60);
+  const [timeLeft, setTimeLeft] = useState(30); 
   const [answers, setAnswers] = useState({});
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const navigate = useNavigate();
 
+  // Fetch Questions
   useEffect(() => {
-  async function getData() {
-    try {
-      const data = await question();
-      setQuestions(data);
-    } catch (error) {
-      console.error("Failed to fetch questions:", error);
-      alert("Failed to load quiz questions. Please try again later.");
-    } finally {
-      setLoading(false);
+    async function getData() {
+      try {
+        const data = await question();
+        setQuestions(data);
+      } catch (error) {
+        console.error("Failed to fetch questions:", error);
+        alert("Failed to load quiz questions. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
     }
-  }
-  getData();
-}, []);
+    getData();
+  }, []);
 
-
+  //Timer
   useEffect(() => {
     if (!isLoading && timeLeft > 0) {
       const timer = setInterval(() => {
@@ -39,6 +40,13 @@ const Dashboard = ({ email }) => {
       return () => clearInterval(timer);
     }
   }, [isLoading, timeLeft]);
+
+  // Auto-submit when timer ends
+  useEffect(() => {
+    if (timeLeft === 0) {
+      confirmSubmission(); 
+    }
+  }, [timeLeft]);
 
   const handleOptionSelect = (option) => {
     setAnswers((prev) => ({ ...prev, [currentIndex]: option }));
