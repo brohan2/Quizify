@@ -3,12 +3,27 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import LandingPage from './pages/LandingPage'
+import Dashboard from './pages/Dashboard'
+import ProtectedRoutes from './utils/ProtectedRoutes'
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [email, setemail] = useState("")
 
   return (
     <>
-      <LandingPage/>
+     <Router>
+        <Routes>
+            <Route path='/' element={<LandingPage setemail={setemail}/>}/>
+            <Route path='/dashboard' element= {   
+            <ProtectedRoutes email={email}>
+              <Dashboard email={email} />
+            </ProtectedRoutes>
+            }/>
+        </Routes>
+    </Router>
     </>
   )
 }
